@@ -1,5 +1,5 @@
-import { MutationTree } from 'vuex'
-import { State } from './state'
+import { MutationTree } from 'vuex';
+import { State } from './state';
 
 export enum Mutation {
   INCREMENT = 'INCREMENT',
@@ -10,7 +10,7 @@ export type Mutations<S = State> = {
 }
 
 export const mutations: MutationTree<State> & Mutations = {
-  [Mutation.INCREMENT](state: State, payload: number = 1) {
-    state.count += payload
+  [Mutation.INCREMENT](state: State, payload = 1) {
+    state.count += payload;
   },
-}
+};

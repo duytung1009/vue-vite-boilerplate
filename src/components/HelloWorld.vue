@@ -3,27 +3,40 @@
   <button
     class="px-3 py-2 bg-white border border-gray-300 rounded-md shadow"
     @click="increment"
-  >
-    count is: {{ count }}
-  </button>
-  <p
-    >Edit <code>components/HelloWorld.vue</code> to test hot module
-    replacement.</p
-  >
+  >count is: {{ count }}</button>
+  <p>
+    Edit
+    <code>components/HelloWorld.vue</code> to test hot module replacement.
+  </p>
 </template>
 
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useStore, Mutation } from '@/store/index'
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import { useStore, Mutation } from '@/store/index';
 
-const store = useStore()
-const count = computed(() => store.state.count)
-const props = defineProps<{
-  msg: string
-  optionalProp?: number
-}>()
+export default defineComponent({
+  props: {
+    msg: {
+      type: String,
+      required: true,
+    },
+    optionalProp: {
+      type: Number,
+      required: false,
+    }
+  },
+  setup(props) {
+    const store = useStore();
+    const count = computed(() => store.state.count);
 
-function increment() {
-  store.commit(Mutation.INCREMENT, 1)
-}
+    const increment = () => {
+      store.commit(Mutation.INCREMENT, 1);
+    };
+    return {
+      count,
+      props,
+      increment
+    };
+  },
+});
 </script>

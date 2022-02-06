@@ -1,7 +1,7 @@
-import { ActionTree, ActionContext } from 'vuex'
+import { ActionTree, ActionContext } from 'vuex';
 
-import { State } from './state'
-import { Mutations, Mutation } from './mutations'
+import { State } from './state';
+import { Mutations, Mutation } from './mutations';
 
 export enum Action {
   initApp = 'initApp',
@@ -20,6 +20,6 @@ export interface Actions {
 
 export const actions: ActionTree<State, State> & Actions = {
   [Action.initApp]({ state, commit, dispatch }) {
-    console.log('app inited!')
+    console.log('app inited!');
   },
-}
+};

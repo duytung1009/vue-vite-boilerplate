@@ -1,6 +1,10 @@
 <template>
   <header class="container px-4 mx-auto mt-6 prose-sm md:px-6 md:prose">
-    <h1>Vite + Vue 3 + TypeScript + Tailwind + Cypress Starter Template v{{ VERSION }}</h1>
+    <h1>
+      Vite + Vue 3 + TypeScript + Tailwind + Cypress Starter Template v{{
+        VERSION
+      }}
+    </h1>
     <p class="pb-4 text-xl leading-relaxed tracking-wide text-gray-700">
       Opinionated, production ready template for Vite and Vue 3
     </p>
@@ -49,39 +53,55 @@
   <footer class="container py-6 mx-auto text-sm text-center text-gray-700">
     <p>
       Vite-ts-tailwind-starter by
-      <a class="underline" href="https://twitter.com/uninen">@Uninen</a> &copy; 2020-{{ thisYear }}.
-      <template v-if="BUILD_DATE"> Site built {{ BUILD_DATE.toLocaleDateString() }}. </template>
+      <a class="underline" href="https://twitter.com/uninen">@Uninen</a> &copy;
+      2020-{{ thisYear }}.
+      <template v-if="BUILD_DATE">
+        Site built {{ BUILD_DATE.toLocaleDateString() }}.
+      </template>
       <template v-else> Development mode. </template>
     </p>
   </footer>
 </template>
-<script setup lang="ts">
-import { useHead } from '@vueuse/head'
 
-const props = defineProps<{
-  title?: string
-}>()
+<script lang="ts">
+import { useHead } from '@vueuse/head';
+import { defineComponent } from 'vue';
 
-// Note: these are static. If you need these to be reactive, use ref() or reactive()
-useHead({
-  bodyAttrs: {
-    title: props.title,
+export default defineComponent({
+  props: {
+    title: {
+      type: String,
+      required: false,
+    }
   },
-  meta: [
-    {
-      property: 'og:title',
-      content: props.title,
-    },
-    {
-      name: 'twitter:title',
-      content: props.title,
-    },
-  ],
-})
+  setup(props) {
+    // Note: these are static. If you need these to be reactive, use ref() or reactive()
+    useHead({
+      bodyAttrs: {
+        title: props.title,
+      },
+      meta: [
+        {
+          property: 'og:title',
+          content: props.title,
+        },
+        {
+          name: 'twitter:title',
+          content: props.title,
+        },
+      ],
+    });
 
-const VERSION = import.meta.env.VITE_APP_VERSION
-const BUILD_DATE = import.meta.env.VITE_APP_BUILD_EPOCH
-  ? new Date(Number(import.meta.env.VITE_APP_BUILD_EPOCH))
-  : undefined
-const thisYear = new Date().getFullYear()
+    const VERSION = import.meta.env.VITE_APP_VERSION;
+    const BUILD_DATE = import.meta.env.VITE_APP_BUILD_EPOCH
+      ? new Date(Number(import.meta.env.VITE_APP_BUILD_EPOCH))
+      : undefined;
+    const thisYear = new Date().getFullYear();
+    return {
+      VERSION,
+      BUILD_DATE,
+      thisYear,
+    };
+  },
+});
 </script>
