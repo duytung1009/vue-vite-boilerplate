@@ -9,17 +9,14 @@
     "test": "cypress open",
     "test-components": "cypress open-ct",
     "test:ci": "cypress run --headless",
-    "test:ci-components": "cypress run-ct"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "test:ci-components": "cypress run-ct",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,ts,vue,scss}": [
       "eslint"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "dependencies": {
     "@vueuse/head": "~0.7",
