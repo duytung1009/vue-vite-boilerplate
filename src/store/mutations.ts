@@ -6,8 +6,8 @@ export enum Mutation {
 }
 
 export type Mutations<S = State> = {
-  [Mutation.INCREMENT](state: S, payload: number): void
-}
+  [Mutation.INCREMENT](state: S, payload: number): void;
+};
 
 export const mutations: MutationTree<State> & Mutations = {
   [Mutation.INCREMENT](state: State, payload = 1) {

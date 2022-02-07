@@ -8,14 +8,11 @@ export enum Action {
 }
 
 type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
-    key: K,
-    payload?: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>
-} & Omit<ActionContext<State, State>, 'commit'>
+  commit<K extends keyof Mutations>(key: K, payload?: Parameters<Mutations[K]>[1]): ReturnType<Mutations[K]>;
+} & Omit<ActionContext<State, State>, 'commit'>;
 
 export interface Actions {
-  [Action.initApp]({ state, commit, dispatch }: AugmentedActionContext): void
+  [Action.initApp]({ state, commit, dispatch }: AugmentedActionContext): void;
 }
 
 export const actions: ActionTree<State, State> & Actions = {

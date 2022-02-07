@@ -3,6 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
+  plugins: ['@typescript-eslint', 'prettier'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -16,11 +17,9 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   rules: {
+    'prettier/prettier': 2,
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'comma-dangle': ['error', 'only-multiline'],
-    'semi': [2, 'always'],
-    'quotes': [2, 'single', { 'avoidEscape': true }],
   },
   globals: {
     defineProps: 'readonly',
