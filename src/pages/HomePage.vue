@@ -2,6 +2,18 @@
   <BaseTemplate title="Vite-TS-Tailwind Starter">
     <HelloWorld msg="Hello World Component" />
 
+    <div v-if="isLoading">
+      <span>Loading...</span>
+    </div>
+    <div v-else-if="isError">
+      <span>Error:{{ error.message }}</span>
+    </div>
+    <div v-else>
+      <ul>
+        <li v-for="item in data.items" :key="item.id">{{ item.username + ' - ' + item.name }}</li>
+      </ul>
+    </div>
+
     <h2>Template Project Features</h2>
 
     <img src="@/assets/editor_screenshot.png" />
@@ -161,14 +173,46 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive, computed } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue';
 import BaseTemplate from '@/components/BaseTemplate.vue';
+import { useQueryUserList } from '@/queries/user-query';
 
 export default defineComponent({
   components: {
     HelloWorld,
     BaseTemplate,
+  },
+  setup() {
+    const queryParams = reactive({
+      page: 1,
+      limit: 10,
+      search: '',
+    });
+    const { isLoading, isError, data, error } = useQueryUserList(queryParams, {
+      enabled: computed(() => !!queryParams),
+    });
+
+    setTimeout(() => {
+      queryParams.page = 2;
+    }, 3000);
+
+    setTimeout(() => {
+      queryParams.page = 1;
+    }, 6000);
+
+    setTimeout(() => {
+      queryParams.page = 1;
+      queryParams.limit = 5;
+      queryParams.search = 'username 1';
+    }, 9000);
+
+    return {
+      isLoading,
+      isError,
+      data,
+      error,
+    };
   },
 });
 </script>
