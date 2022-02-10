@@ -2,7 +2,7 @@
   "name": "vue-vite-boilerplate",
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite build && vite preview",
     "start": "yarn dev & wait-on tcp:3000 -v",
