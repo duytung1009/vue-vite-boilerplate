@@ -10,6 +10,7 @@
     "test-components": "cypress open-ct",
     "test:ci": "cypress run --headless",
     "test:ci-components": "cypress run-ct",
+    "lint": "eslint . --fix --ext .js,.ts,.vue,.scss",
     "prepare": "husky install"
   },
   "husky": {
