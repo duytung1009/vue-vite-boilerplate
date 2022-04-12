@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import AdminLayout from '@/layouts/AdminLayout.vue';
-
 import HomePage from '@/pages/HomePage.vue';
+
+import PageCartHome from '@/components/pages/PageCartHome.vue';
 
 const routes = [
   {
@@ -10,8 +10,11 @@ const routes = [
     component: HomePage,
     meta: {
       title: 'Vite + Vue + TypeScript + Tailwind Starter Template',
-      layout: AdminLayout,
     },
+  },
+  {
+    path: '/cart-home',
+    component: PageCartHome,
   },
 ];
 

@@ -9,6 +9,9 @@ import 'flowbite';
 // vue-query
 import { VueQueryPlugin } from 'vue-query';
 
+// Atom components
+import AtomButton from '@/components/atoms/AtomButton.vue';
+
 const head = createHead();
 const app = createApp(App);
 
@@ -16,5 +19,7 @@ app.use(store);
 app.use(router);
 app.use(head);
 app.use(VueQueryPlugin);
+
+app.component('AtomButton', AtomButton);
 
 app.mount('#app');
